@@ -9,6 +9,16 @@ class GaussianPacket:
     def __init__(self) -> None:
         pass
 
+    def dimension_1(k, sigma, miu, x):
+    k = torch.tensor([k])
+    sigma = torch.tensor([sigma])
+    miu = torch.tensor([miu])
+
+    wave = torch.exp(-(x-miu)**2 / (2*sigma**2)) * torch.exp(1j*k*x)
+    wave = wave / wave.norm(p=1) # L1范数 = wave.abs().sum()
+
+    return wave
 
 
 if __name__ == "__main__":
+    import matplotlib.pyplot as plt
